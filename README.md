@@ -6,3 +6,6 @@ Simple HTML/CSS site mimicing some NeXT Workspace elements:
 - Dock
 - Default menu location
 - Movable window
+
+Splash page hides a link in the window of the MO disk.
+

@@ -7,5 +7,5 @@ Simple HTML/CSS site mimicing some NeXT Workspace elements:
 - Default menu location
 - Movable window
 
-Splash page hides a link in the window of the MO disk.
+Splash page hides a link in the arrow of the MO disk at the uppermost position.
 

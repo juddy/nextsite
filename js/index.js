@@ -14,7 +14,7 @@ var FULLSCREEN_MARGINS = -10;
 var MARGINS = 4;
 
 // End of what's configurable.
-var clicked = false;
+var clicked = null;
 var onRightEdge, onBottomEdge, onLeftEdge, onTopEdge;
 
 var rightScreenEdge, bottomScreenEdge;
@@ -29,10 +29,10 @@ var pane = document.getElementById('pane');
 var ghostpane = document.getElementById('ghostpane');
 
 function setBounds(element, x, y, w, h) {
-	element.style.left = x + 'px';
-	element.style.top = y + 'px';
-	element.style.width = w + 'px';
-	element.style.height = h + 'px';
+    element.style.left = x + 'px';
+    element.style.top = y + 'px';
+    element.style.width = w + 'px';
+    element.style.height = h + 'px';
 }
 
 function hintHide() {
@@ -52,7 +52,7 @@ pane.addEventListener('mousedown', onMouseDown);
 document.addEventListener('mousemove', onMove);
 document.addEventListener('mouseup', onUp);
 
-// Touch events	
+// Touch events    
 pane.addEventListener('touchstart', onTouchDown);
 document.addEventListener('touchmove', onTouchMove);
 document.addEventListener('touchend', onTouchEnd);
@@ -64,7 +64,7 @@ function onTouchDown(e) {
 }
 
 function onTouchMove(e) {
-  onMove(e.touches[0]);		
+  onMove(e.touches[0]);        
 }
 
 function onTouchEnd(e) {
@@ -79,7 +79,7 @@ function onMouseDown(e) {
 function onDown(e) {
   calc(e);
 
-  var isResizing = onRightEdge || onBottomEdge || onTopEdge || onLeftEdge;
+  var isResizing = onRightEdge || onBottomEdge || onLeftEdge;
 
   clicked = {
     x: x,
@@ -144,7 +144,7 @@ function animate() {
       var currentWidth = Math.max(clicked.cx - e.clientX  + clicked.w, minWidth);
       if (currentWidth > minWidth) {
         pane.style.width = currentWidth + 'px';
-        pane.style.left = e.clientX + 'px';	
+        pane.style.left = e.clientX + 'px';    
       }
     }
 
@@ -152,7 +152,7 @@ function animate() {
       var currentHeight = Math.max(clicked.cy - e.clientY  + clicked.h, minHeight);
       if (currentHeight > minHeight) {
         pane.style.height = currentHeight + 'px';
-        pane.style.top = e.clientY + 'px';	
+        pane.style.top = e.clientY + 'px';    
       }
     }
 
@@ -163,36 +163,14 @@ function animate() {
 
   if (clicked && clicked.isMoving) {
 
-    if (b.top < FULLSCREEN_MARGINS || b.left < FULLSCREEN_MARGINS || b.right > window.innerWidth - FULLSCREEN_MARGINS || b.bottom > window.innerHeight - FULLSCREEN_MARGINS) {
-      // hintFull();
-      setBounds(ghostpane, 0, 0, window.innerWidth, window.innerHeight);
-      ghostpane.style.opacity = 0.2;
-    } else if (b.top < MARGINS) {
-      // hintTop();
-      setBounds(ghostpane, 0, 0, window.innerWidth, window.innerHeight / 2);
-      ghostpane.style.opacity = 0.2;
-    } else if (b.left < MARGINS) {
-      // hintLeft();
-      setBounds(ghostpane, 0, 0, window.innerWidth / 2, window.innerHeight);
-      ghostpane.style.opacity = 0.2;
-    } else if (b.right > rightScreenEdge) {
-      // hintRight();
-      setBounds(ghostpane, window.innerWidth / 2, 0, window.innerWidth / 2, window.innerHeight);
-      ghostpane.style.opacity = 0.2;
-    } else if (b.bottom > bottomScreenEdge) {
-      // hintBottom();
-      setBounds(ghostpane, 0, window.innerHeight / 2, window.innerWidth, window.innerWidth / 2);
-      ghostpane.style.opacity = 0.2;
-    } else {
-      hintHide();
-    }
+   
 
     if (preSnapped) {
       setBounds(pane,
-      	e.clientX - preSnapped.width / 2,
-      	e.clientY - Math.min(clicked.y, preSnapped.height),
-      	preSnapped.width,
-      	preSnapped.height
+          e.clientX - preSnapped.width / 2,
+          e.clientY - Math.min(clicked.y, preSnapped.height),
+          preSnapped.width,
+          preSnapped.height
       );
       return;
     }
@@ -208,13 +186,13 @@ function animate() {
 
   // style cursor
   if (onRightEdge && onBottomEdge || onLeftEdge && onTopEdge) {
-    pane.style.cursor = 'nwse-resize';
+    pane.style.cursor = 'default';
   } else if (onRightEdge && onTopEdge || onBottomEdge && onLeftEdge) {
-    pane.style.cursor = 'nesw-resize';
+    pane.style.cursor = 'default';
   } else if (onRightEdge || onLeftEdge) {
-    pane.style.cursor = 'ew-resize';
+    pane.style.cursor = 'default';
   } else if (onBottomEdge || onTopEdge) {
-    pane.style.cursor = 'ns-resize';
+    pane.style.cursor = 'default';
   } else if (canMove()) {
     pane.style.cursor = 'move';
   } else {
@@ -228,35 +206,6 @@ function onUp(e) {
   calc(e);
 
   if (clicked && clicked.isMoving) {
-    // Snap
-    var snapped = {
-      width: b.width,
-      height: b.height
-    };
-
-    if (b.top < FULLSCREEN_MARGINS || b.left < FULLSCREEN_MARGINS || b.right > window.innerWidth - FULLSCREEN_MARGINS || b.bottom > window.innerHeight - FULLSCREEN_MARGINS) {
-      // hintFull();
-      setBounds(pane, 0, 0, window.innerWidth, window.innerHeight);
-      preSnapped = snapped;
-    } else if (b.top < MARGINS) {
-      // hintTop();
-      setBounds(pane, 0, 0, window.innerWidth, window.innerHeight / .5);
-      preSnapped = snapped;
-    } else if (b.left < MARGINS) {
-      // hintLeft();
-      setBounds(pane, 0, 0, window.innerWidth / .5, window.innerHeight);
-      preSnapped = snapped;
-    } else if (b.right > rightScreenEdge) {
-      // hintRight();
-      setBounds(pane, window.innerWidth / .5, 0, window.innerWidth / .5, window.innerHeight);
-      preSnapped = snapped;
-    } else if (b.bottom > bottomScreenEdge) {
-      // hintBottom();
-      setBounds(pane, 0, window.innerHeight / .5, window.innerWidth, window.innerWidth / .5);
-      preSnapped = snapped;
-    } else {
-      preSnapped = null;
-    }
 
     hintHide();
 
@@ -265,3 +214,4 @@ function onUp(e) {
   clicked = null;
 
 }
+

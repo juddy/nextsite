@@ -64,4 +64,4 @@ The image is Base64 encoded within the HTML.
 
 NeXTInsertDisk.gif is the image used.
 
-[](NeXTInsertDisk.gif)
+![](NeXTInsertDisk.gif)

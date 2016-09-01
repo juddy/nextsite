@@ -1,12 +1,14 @@
 a:link, a:visited {
-    text-decoration: none;
-    color: black;
-    display: inline-block;
-    cursor: default;
-}
+      text-decoration: none;
+      color: black;
+      display: inline-block;
+      cursor: default;
+      font-smooth: never;
+      -webkit-font-smoothing : none;
+  }
 
 body {
-    background-color: #535679;
+    background-color: #434165;
     margin: 0 0 0 0;
     border-width: 0;
     padding: 0 0 0 0;
@@ -20,28 +22,27 @@ body {
 }
 
 .dock {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    width: 64px;
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      width: 64px;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
     border-width: 0;
 }
 
 
 #oldpane {
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    top: 0px;
-    left: 0px;
-    margin: 0;
-    padding: 0;
-    z-index: 100;
-    border: 4px #9a9a9a;
-    background: #fff;
-
+      position: absolute;
+      width: 0px;
+      height: 0px;
+      top: 0px;
+      left: 0px;
+      margin: 0;
+      padding: 0;
+     z-index: 100;
+      border: 4px #9a9a9a;
+      background: #fff;
 }
 
 #title {
@@ -49,80 +50,77 @@ body {
     background-color: #000;
     height: 18px;
     border:2px;
-    font-size: 11pt;
-    font-family:'helvetica-bold';
-    padding-left: .5em;
-    padding-top: .3em;
+       font-size: 10pt;
+       font-family:'helvetica-bold';
+       padding-left: .5em;
+       padding-top: .3em;
     color:#fff;
-    border-style: solid;
-    border-color: #ffffff #555555 #555555 #ffffff;
+      border-style: solid;
+      border-color: #ffffff #555555 #555555 #ffffff;
+      font-smooth: never;
+      -webkit-font-smoothing : none;
 
-}
-
-#oldghostpane {
-    background: #999;
-    width: 0px;
-    height: 0px;
-    top: 20%;
-    left: 20%;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    z-index: 98;
-    display: flex;
-    justify-content: center;
 }
 
 #apps {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
+      position: absolute;
+      bottom: 0;
+      left: 0;
+}
+
+#recycler {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+}
+
 
 #text {
-    font-family: Serif; 
-    background-color: white;
-    position: absolute;
-    padding: 10px;
-    margin: 2px;
+      font-family: Serif; 
+      background-color: white;
+      position: absolute;
+      padding: 10px;
+      margin: 2px;
+      font-smooth: never;
+      -webkit-font-smoothing : none;
 }
 
 #menu{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width:190px;
-    height:auto;
-    border:1px solid black;
-    background-color: #000;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width:190px;
+      height:auto;
+      border:1px solid black;
+      background-color: #000;
 }
 
 .item{
-    background-color: #9a9a9a;
-    height: 16px;
-    padding: 1px;
-    padding-left: .8em;
-    padding-top: .2em;
-    margin: 1px;
-    border:1px;
-    border-style: solid;
-    border-color: #ffffff #555555 #555555 #ffffff;
-    font-family: "Helvetica";
-    font-size: 10pt;
+      background-color: #9a9a9a;
+      height: 16px;
+      padding: 1px;
+      padding-left: .2em;
+      padding-top: .2em;
+      margin: 1px;
+      border:1px;
+      border-style: solid;
+      border-color: #ffffff #555555 #555555 #ffffff;
+      font-family: "Helvetica";
+      font-size: 10pt;
 }
 
 .pad{
     border-style: outset;
     background-color: #000;
-    height: 16px;
-    border:1px;
-    font-size: 11pt;
-    font-family:'helvetica-bold';
-    padding-left: .5em;
-    padding-top: .3em;
-    color:#fff;
-    border-style: solid;
-    border-color: #ffffff #555555 #555555 #ffffff;
+      height: 16px;
+      border:1px;
+       font-size: 10pt;
+       font-family:'helvetica-bold';
+       padding-left: .5em;
+       padding-top: .3em;
+      color:#fff;
+      border-style: solid;
+      border-color: #ffffff #555555 #555555 #ffffff;
 }
 .top{top:0;}
 .left{left:0;}
@@ -130,42 +128,85 @@ body {
 
 
 body {
-    overflow: hidden;
+overflow: hidden;
 }
 
 #pane {
-    position: absolute;
-    width: 45%;
-    height: 45%;
-    top: 10px;
-    left: 10px;
-    margin: 0;
-    padding: 0;
-    z-index: 99;
-    border: none;
-    background: #c4c4c4;
-    min-width: 190px;
-    min-height: 100px;
-    max-width: 180px;
-    max-height: 136px; 
+      position: absolute;
+      width: 45%;
+      height: 45%;
+      top: 18px;
+      left: 18px;
+      margin: 0;
+      padding: 0;
+     z-index: 99;
+      border: none;
+      background: #c4c4c4;
+        min-width: 190px;
+        min-height: 100px;
+        max-width: 180px;
+        max-height: 136px; 
 }
 
 
 #ghostpane {
-    background: #000;
-    opacity: 0;
-    width: 45%;
-    height: 45%;
-    top: 20%;
-    left: 20%;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    z-index: 98;
+      background: #000;
+      opacity: 0;
+      width: 45%;
+      height: 45%;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+     z-index: 98;
 
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+     -webkit-transition: all 0.25s ease-in-out;
+     -moz-transition: all 0.25s ease-in-out;
+     -ms-transition: all 0.25s ease-in-out;
+     -o-transition: all 0.25s ease-in-out;
+      transition: all 0.25s ease-in-out;
+}
+
+#stickie {
+    font-family: helvetica;
+    font-size: 11px;
+
+        position: absolute;
+      width: 200px;
+      height: 100px;
+      top: 20%;
+      left: 20%;
+      margin: 10px;
+          top-margin; 10px;
+      padding: 10px;
+     z-index: 99;
+      border: 4px #d1a61b;
+      background: #ffff8f;
+        min-width: 300px;
+        min-height: 100px;
+        max-width: 450px;
+        max-height: 550px;
+}
+
+
+.dblclick {
+position: relative; /* So z-index works later, but no surprises now */
+      /* background: blue; Uncomment to test coverage */
+}
+
+.dblclick + span {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 103%; /* Gotta do this instead of right: 0; */
+      bottom: -1px;
+    z-index: 1;
+    /* background: red; Uncomment background property to test coverage */
+}
+
+.dblclick + span:active {
+      left: -9999px;
+}
+
+.dblclick:hover {
+    z-index: 2;
 }

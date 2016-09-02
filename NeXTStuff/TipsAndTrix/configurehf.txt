@@ -1,0 +1,28 @@
+Item    8240807                 94/05/03        05:14
+From:   ALEXANDER_SPOHR@DART.DE@INET00# Internet Gateway
+To:     ERICTREMBLAY                    Eric Tremblay
+Subject: Re: Hidden Feature (Got It)
+
+Eric,
+
+here you go:
+a) select the NeXTUSA keyboard (I use the German one, that's why it did not
+work)
+b) start Configure.app
+c) get the InfoPanel
+d) hold down Ctrl+Alt (left side)
+e) click on the icon.......... Sproing!
+
+
+Inside the appwrapper you find a tiff called Information.tiff - look into it
+(after you sawthe anim). You can try to change the Information.sxxxx file to get a nicer anim...
+:-) (Ha ha ha!!!) I hadn't the time yet. But if you do it, please send me a
+copy!
+
+Have fun now!
+
+Atze
+
+
+
+=END=

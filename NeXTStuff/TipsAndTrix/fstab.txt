@@ -1,0 +1,89 @@
+THE PROBLEM:
+
+Item    2176279                 93/10/12        11:40
+From:   LOIS@DOUBLON.UNICE.FR@INTERNET# Internet Gateway II
+Sub: fstab deleted: what now?!?!
+
+I have a NeXT station that is being re-configured to
+attach to a new network.  In the process of deleting the old
+configuration to start over, someone has deleted the file
+"/usr/etc/fstab" and of course when it was rebooted, it
+couldn't mount the file system properly.  Now the problem has
+been given to me (a bit late!!) and I'm stumped: It fakes the
+root mount, and I end up, as single-user, with a read-only
+file system.  Thus, I cannot add the missing fstab, and I
+cannot unmount the "fake", read_only system and mount it
+properly by hand, because THAT requires updating mtab, which
+isn't allowed for a read_only system. (Catch-22!)
+
+My question: is there ANY way to remedy this
+situation WITHOUT booting from another source? Or is my only
+hope to find a diskette or optical diak and reader that has
+the system and boot from there, mount the system by hand, and
+add fstab, etc, etc.  This is important because we need this
+computer NOW and I can't get hold of another boot source for
+at least a week...
+Thanks in advance for your help...
+
+---
+Lois Hoffer
+
+E-mail:lois@ecu.unice.fr
+
+____________________________________________________________
+Institut Nonlineaire de Nice
+
+Universite de Nice-Sophia Antipolis
+1361 Route des Lucioles
+F-06560  Valbonne, France
+
+Phone: +33.92.96.73.03      Fax: +33.93.65.25.17
+
+
+
+THE SOLUTION:
+
+Item    8127995                 93/10/12        14:37
+From:   M.CRAWFORD@DCS.SHEFFIELD.AC.UK@INTERNET#
+Sub: Re: fstab deleted: what now?!?
+
+OK, OK already!!  :-)
+So I tried too hard!
+
+Lois Hoffer had the following problem ("opportunity"?!):
+> I have a NeXT station that is being re-configured to attach to a new
+> network. In the process of deleting the old configuration to start
+> over, someone has deleted the file "/usr/etc/fstab" and of course
+> when it was rebooted, it couldn't mount the file system properly.
+>
+
+The easiest way to remedy this appears to be:
+
+(1) boot single user
+bsd -sb
+
+(2) issue
+mount -o rw,remount /dev/sd0a /
+    to get r/w access.
+
+(3) recreate /etc/fstab
+    e.g. include
+/dev/sd0a / 4.3 rw,noquota,noauto 0 1
+
+
+(4) come back up multi-user
+
+[cf: /etc/rc.boot, and mount(8)]
+
+Many thanks to:
+Fred Korz, Alan M. Marcum, Benjamin Cline, Nick Christopher,
+
+Robert D. Nielsen, and any others in advance!
+
+Have fun,
+
+mmalcolm.
+
+
+
+

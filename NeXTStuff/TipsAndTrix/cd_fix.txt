@@ -1,0 +1,38 @@
+
+Swapping CDROM filesystem
+
+Special thanks to:
+Thomas Funke  ** Unix-Consultant ** thf@zelator.in-berlin.de
+Larry Blische           lkba!lkb@uunet.UU.NET
+
+Here it is:
+
+If you have NEXTSTEP 3.1 on Black hardware and your having problems
+copying files from the cdrom. Swap the CDROM filesystem with the one
+found on NeXTSTEP 3.0 and you will be a happy camper once again.
+This "bug fix" only works on Black hardware, and the White hardware
+has the same bug but it does not have the 3.0 filesystem which we
+can swap.
+
+Here's what your directory should look like once the swap has
+been done:
+
+/usr/filesystems/CDROM.fs
+
+-r--r--r--  1 root        3546 Mar 25  1992 CDROM.fs.tiff
+-rw-r--r--  1 root          10 Oct 30 16:06 CDROM.label
+-rw-r--r--  1 root          16 Oct 30 16:06 CDROM.name
+-r--r--r--  1 root        3546 Mar 25  1992 CDROM.openfs.tiff
+-rwsr-xr-x  1 root       24576 Jul 22  1992 CDROM.util*
+-rw-r--r--  1 root       46224 Jul 22  1992 CDROM_reloc
+
+Please make sure the the CDROM.util* file has the -rwsr-xr-x
+permissions. The "s" is easy to miss (I know, I missed it...)
+(chmod u+s CDROM.util*, to set the s permission)
+
+Thanks again to all the great people on the net for the advice
+and help!
+
+Eric "E.T." Tremblay
+Walnut Creek CDROM.
+BTW: The Nebula for NEXTSTEP Intel was released this week!!!

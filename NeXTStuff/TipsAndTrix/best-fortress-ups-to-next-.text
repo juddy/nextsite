@@ -1,0 +1,65 @@
+Notes on connecting a Best Fortress UPS to a NeXT serial port:
+
+Hardware:
+  The correct cable wiring is as follows:
+      UPS (DB-9 male)      NeXT (Mini DIN-8 male)
+      ---------------      ----------------------
+           1                      3
+           2                      5
+           4                      4
+
+Software for graceful shutdown:
+  The CheckUPS for Unix software package from Best includes a BSD Unix
+  version called checkups.bsd.  I got the floppy disk version of this
+  software; the 3.5 inch DOS-format floppy that comes in this package
+  reads fine on the NeXT.  To compile the file, you not only have to
+  rename it to checkups.c, but also change carriage-return line-feed
+  endings to just line-feed (i.e. newline).  Here's how I got the
+  program off the disk, changed the line ending convention and name,
+  and compiled it:
+    tr -d '\015' < /DOS/checkups.bsd > checkups.c
+    cc -s -O -o checkups checkups.c               
+  This compiles with two ignorable warnings. Note: if you were to do
+  the obvious thing and add the -bsd flag to cc, the warnings would go
+  away, but the program wouldn't always work right, because toupper
+  and tolower are used on arbitrary characters.  There is also a
+  latent bug that doesn't seem to strike on the NeXT; see the end of
+  this file if you care.  Other than these caveats, as far as I can
+  tell from looking at it, checkups it should run fine in its as-is
+  state.  However, I have only actually tested it after making two
+  minor modifications:
+    1) I changed it to directly run "/usr/etc/halt -p" to shut the
+       system down rather than an /etc/upsdown script that would
+       presumably contain this line.  This is a matter of taste and
+       I'm not convinced I'd recommend it.
+    2) I changed the printmsg function to use syslog (at the emergency
+       priority level) rather than the wall command to display the
+       messages.  The normal /etc/syslog.conf configuration is set up
+       so that emergency messages are in fact broadcast to all
+       logged-in users, just like with wall.  However, additionally
+       the messages wind up on the console and in the log file
+       (/usr/adm/messages).  This is useful in our situation, since
+       there is typically no one logged in to the file server
+       (particularly when the power is out, since nothing they could
+       log in from is on an UPS), so the broadcasting would likely
+       never be seen, but it is nice to have a record in the log file
+       of what happened.
+
+Security:
+  If you don't make the protection modes on /dev/ttya more restrictive,
+  then any normal user, even logging in remotely, will be able to
+  power your machine down by just sending the right string to that
+  serial port.  So, I'd recommend making that device accesable only to
+  root.  In fact, I'd go further and do the same for all the various
+  flow controlled and dial in/out variations on tty, i.e.
+  /dev/{tty{d,},cu}{f,}a
+
+Latent bug:
+  sendstr doesn't return anything at all, but msgrdy checks whether it
+  returned ERROR (i.e. -1).  This works on the NeXT because something
+  other than -1 happens to have been left in the relevant register.
+  To fix this for real, just remove the check.
+
+Please let me know if you have any additional information (or
+corrections, heaven forbid) you would like to contribute to this file.
+  -Max Hailperin <max@nic.gac.edu>, Gustavus Adolphus College

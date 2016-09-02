@@ -1,0 +1,218 @@
+Article 18379 of comp.sys.next
+Path: shlump.nac.dec.com!news.crl.dec.com!deccrl!bloom-beacon!ora!snorkelwacker.mit.edu!think.com!spool.mu.edu!sol.ctr.columbia.edu!emory!att!cbnewse!tyc
+From: tyc@cbnewse.att.com (felix.a.lugo)
+Newsgroups: comp.sys.next
+Subject: 030 + 040 in single cube ... the solution!
+Message-ID: <1991May2.070624.262@cbnewse.att.com>
+Date: 2 May 91 07:06:24 GMT
+Organization: AT&T Bell Laboratories
+Lines: 164
+
+
+	Well, for those who said that it couldn't be done ...  here it is ...
+	The procedure for using two motherboards on a single NeXTcube!
+
+	First of all, a disclaimer:
+
+**********************   DISCLAIMER  DISCLAIMER   **************************
+	The following procedure is not supported by NeXT, Inc. and will
+	definitely void any warranty that remains on your NeXT computer.
+	Follow it at your own risk.  I disclaim all responsibilities for any
+	damages caused by negligence in following the procedure.  There is
+	no guarantee that the procedure will work on all versions(?) of the
+	NeXTcube.  All I know is that it worked on the NeXT cube I was
+	working on!!!!  SO BEWARE!
+**********************   DISCLAIMER  DISCLAIMER   **************************
+
+	Here we go!  I'll first give a description of the hardware I was
+	using and an comment on what I accomplished and how I got the
+	information on how to do it!
+
+	The hardware I was using included a NeXTcube with 660 MB drive, OD
+	etc., a 68040 upgrade, and a 68030 motherboard.  I accomplished
+	installing both the 68040 and 68030 boards on a SINGLE NeXTcube and
+	linked them together through their ethernet ports.  The 68040 was
+	configured as a server and the 68030 was used as a client (booting
+	off the network for lack of an additional hard drive).  The procedure
+	reconfigures slot #2 on the NeXTcube back-plane as slot #0.  This
+	provides two slots on the cube configured as #0 which is required for
+	booting the two motherboards.  Once I figured-out what the slot pin-
+	outs were (thanks to my good friend John Chmielewski), it was a matter
+	of time before the two boards happily co-existed.
+
+	Now the procedure:
+
+	1. First, follow the procedure on the NeXT User's Reference manual for
+	   removing the system board (Appendix C: Opening the Cube on page
+	   291 of the 2.0 manual).
+
+	2. Remove the two screws that attach the power-supply housing to the
+	   cube (using the NeXT supplied tool) and gently pull the housing
+	   out.  Set it aside in a safe place (away from kids and nosey
+	   friends!)
+
+	3. Remove the two plastic grooved plates (used to slide the system
+	   boards in) at each side of the inside bottom of the cube.  (For
+	   each plate, lift the side closest to the rear opening and gently
+	   pull them out).  Set them aside.
+
+	4. Using the NeXT tool, remove three screws holding the back-plane to
+	   the cube and then take the back-plane out of the cube.  Let the
+	   cube rest for a while.
+
+	Inspect the back-plane.  You should see five bus slots (four vertical
+	and one horizontal).  The horizontal slot connects the back-plane to
+	the power supply housing.  We're only interested in the four vertical
+	slots.  From the factory these slots are configured by NeXT as 6, 2, 0,
+	and 4 (starting from the left and going right with the horizontal slot
+	at the bottom of the back-plane).  The main system board is connected
+	to slot #0 (which you have probably noticed).  Each slot contains
+	three columns of 32 pins.  Following is an ASCII representation of
+	one of the slots:
+
+				x y z	 C B A
+				o-o o 32 . . .
+				o-o o 31 . . .
+				o-o o 30 . . .
+				o-o o 29 . . .
+				      28 . . .
+
+					   . 
+					   . 
+					   . 
+
+				       3 . . .
+				       2 . . .
+				       1 . . .
+
+	where x, y, and z are labeled GND, SID, and VCC, respectively.  The
+	GND, SID, and VCC "holes" are used to configure the slot number using
+	simple binary encoding, where GND is logical zero, VCC is logical one,
+	and SID determines the current bit state (one or zero).  From the
+	diagram above, you'll notice that there are 4 rows of GND, SID, VCC
+	triads; each row is equivalent to one bit position in the slot number,
+	the bottom row being bit position 0 and the top row bit position 3.
+	This gives a total of four bit positions, or 16 possible slot numbers.
+	To encode a slot number, all that is required is to connect an SID
+	row to its corresponding GND or VCC row.  For example, the diagram
+	below shows the configuration of the slots in my cube's back-plane:
+
+		SLOT #6		SLOT #2		SLOT #0		SLOT #4
+	BIT 3:	o-o o		o-o o		o-o o		o-o o
+	BIT 2:	o o-o		o-o o		o-o o		o o-o
+	BIT 1:	o o-o		o o-o		o-o o		o-o o
+	BIT 0:	o-o o		o-o o		o-o o		o-o o
+
+	(you'll have to look very closely to see the connection between the
+	 "holes").
+
+	Now to continue with the procedure:
+
+	5. To reconfigure slot #2 as slot #0, you'll have to cut the trace
+	   between SID and VCC for bit position 1 above and connect SID to GND
+	   in the same row.  To cut the trace, I used the NeXT supplied tool
+	   for removing SIMMs in the 040 upgrade (talk about multi-purpose!)
+	   Very gently, I scraped the solder between the two holes.  I then
+	   took a paperclip, shaped it to fit between the holes in SID and
+	   GND, and trimmed it down to an even 1/4 inch (perfect fit!).
+	   That's all there is to it.  If for some reason you ever want to
+	   revert to slot #2, just remove the paperclip from GND-SID and
+	   reconnect it to SID-VCC.
+
+	6. Now put the cube back together.  First, re-install the back-plane
+	   and its three connecting screws, then the plastic plates, the
+	   power-supply housing and its two screws.
+
+	At this point the cube is ready to take on the two system boards.
+	How you decide on what or how to use them is up to you;  I'll explain
+	how I used mine ...
+
+	7. I installed the 68040 in the original slot #0 and the 68030 in the
+	   reconfigured slot #0 (previously slot #2).  The 68040 was used as
+	   the main processor board.  I connected the 660 MB drive, the OD,
+	   and the monitor cable to it.
+NOTE:
+	Before I began the procedure, I went into the NeXT Monitor on the 68030
+	and disabled the SCSI tests and verbose test mode, enabled port A as a
+	console terminal, and made "en" the default boot device.
+	I also setup the 68040 as a boot server and taught it about the 68030
+	(which took some time to get it setup properly).
+
+	8. I connected the 68040 to the 68030 using a thin-ethernet cable and
+	   I booted.  First thing I noticed was that the 68030 timed-out a
+	   couple of times waiting for the 040 to tell it to boot.  But after
+	   the 040 was up, the 030 booted nicely.
+
+	That's all folks.  Hope all this made some sense and people find it
+	useful.
+
+	Some comments:
+	-  To power off the cube, I have to first shutdown the 030 (I run
+	   "halt -p" as root from a telnet connection and wait for the
+	   030 to go down), and I then halt the 040.  If you shut down
+	   the 040 before the 030, you'll have to pull the power plug to turn
+	   the machine off.  The cube will not power off if either of the two
+	   boards is providing a load to the power-supply.
+	-  Remember, I've only performed this procedure on one system.  I do
+	   not know what will happen on your system.  So make sure you plan
+	   ahead what your going to do and that you understand the procedure.
+	-  I don't know what problems arise when you add a board that uses
+	   the NeXTBus, such as the NeXTdimension, or how it will behave. If
+	   someome is brave enough to perform the procedure and tries another
+	   board, please post your results to the net.
+	-  If you think this procedure has done any good to you, please feel
+	   free to send in donations.  8^)  (think of it as "hardshare")
+
+===============================================================================
+Felix A. Lugo
+
+E-Mail: (NeXTmail preferred)
+   AT&T Bell Laboratories, Naperville, IL	Felix_A_Lugo@ATT.COM
+						coco@ihcoco.att.com
+   AT&T NeXT User Group				nug@ihcoco.att.com
+   T.Y.C. Software, Lisle, IL			coco@ihtyc.att.com
+===============================================================================
+
+
+Article 18424 of comp.sys.next
+Path: nntpd.lkg.dec.com!rust.zso.dec.com!pa.dec.com!decwrl!sun-barr!apple!usc!zaphod.mps.ohio-state.edu!pacific.mps.ohio-state.edu!linac!att!cbnewse!tyc
+From: tyc@cbnewse.att.com (felix.a.lugo)
+Newsgroups: comp.sys.next
+Subject: UPDATE: 030 + 040 in single cube ... the solution!
+Message-ID: <1991May3.042848.11983@cbnewse.att.com>
+Date: 3 May 91 04:28:48 GMT
+References: <1991May2.070624.262@cbnewse.att.com>
+Organization: AT&T Bell Laboratories
+Lines: 31
+
+
+	To clear up some misunderstandings with the settings in the "p"
+	command of the NeXT monitor (these settings are only required
+	for the system board that doesn't have the NeXT display monitor
+	connected):
+
+		1. Sound out test must be "no"; the boot process will not
+		   proceed if the monitor isn't connected to the board and
+		   this is set to "yes".
+		2. SCSI tests should be "no" if you don't have SCSI devices
+		   attached to the board.
+		3. Verbose test mode must be "no" for booting from the network.
+		   If set to "yes", the boot process will timeout waiting for
+		   a BOOTP and you'll be left in the monitor with no means of
+		   restarting the board (except pulling the power plug!)  This
+		   is probably true also for booting from an OD that hasn't
+		   been inserted (assuming the OD was attached to the board).
+		4. Allow serial port A as alternate console if you want to
+		   view the boot process (for problems and peace-of-mind).
+		5. Other settings were not modified from their factory defaults
+		   or had no effect on the procedure.
+
+===============================================================================
+Felix A. Lugo
+
+E-Mail: (NeXTmail preferred)
+   AT&T Bell Laboratories, Naperville, IL	Felix_A_Lugo@ATT.COM
+						coco@ihcoco.att.com
+   AT&T NeXT User Group				nug@ihcoco.att.com
+   T.Y.C. Software, Lisle, IL			coco@ihtyc.att.com
+===============================================================================

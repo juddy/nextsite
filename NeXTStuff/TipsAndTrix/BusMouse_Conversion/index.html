@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>NeXT Non-ADB mouse to Microsoft 'In-port'</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {  font-family: Arial, Helvetica, sans-serif; font-size: 14pt; font-style: normal; font-weight: normal; color: #CCCCCC; background-color: #000000}
+-->
+</style>
+</head>
+
+<body bgcolor="#000000" text="#00CC33">
+<table width="80%" border="0" align="center">
+  <tr nowrap> 
+    <td> 
+      <p align="left"><b><font size="3" color="#CCCCCC" face="Arial, Helvetica, sans-serif">...................................................................</font><font size="3" color="#999999" face="Arial, Helvetica, sans-serif">.................</font><font size="3" color="#666666" face="Arial, Helvetica, sans-serif">...................</font><font size="3" color="#333333" face="Arial, Helvetica, sans-serif">................................</font><font size="3" color="#000000" face="Arial, Helvetica, sans-serif">...............</font></b></p>
+      <p align="left"><font color="#FF0033" size="3" face="Arial, Helvetica, sans-serif"><b>N</b></font><font size="3" face="Arial, Helvetica, sans-serif"><b><font color="#FFFF00">e</font>X<font color="#FF00CC">T</font> 
+        Non-ADB mouse to Microsoft In-port</b></font></p>
+      <p align="left"><font size="3" face="Arial, Helvetica, sans-serif"><b><font color="#CCCCCC">...................................................................</font><font color="#999999">.................</font><font color="#666666">...................</font><font color="#333333">................................</font><font color="#000000">...............</font></b></font></p>
+      </td>
+  </tr>
+  <tr>
+    <td> 
+      <p><font size="3" color="#CCCCCC">I missed the feel of my non-adb <font color="#FF0033">N</font><font color="#FFFF00">e</font><font color="#00CC00">X</font><font color="#CC0099">T</font> 
+        mouse, so I set out to make it work on my OPENSTEP box.</font></p>
+      <p><font size="3" color="#CCCCCC"> I would need to make a keyboard and mouse 
+        work with the PS/2, USB, or a Bus mouse port. I have yet to find a way 
+        to use the Non-ADB keyboard on a PC, the ADB keyboard has got to be among 
+        the crappiest keyboards in terms of <i>feel</i> I ever used, and as such, 
+        would not be worth getting an ADB &gt; USB converter to allow its use. 
+        The same goes for the ADB mouse, the grandpappy of the much maligned Apple 
+        &quot;hockeypuck&quot; mouse. It's too small for my hand, but I kind of 
+        like the rounded feel of it. However, not as much as I like the square, 
+        brick, non-ADB mouse! </font></p>
+      </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table width="80%" border="0" align="center">
+  <tr> 
+    <td> 
+      <p><font size="3" color="#CCCCCC">I got a Microsoft Bus Mouse and a couple 
+        of In-port cards, and set out to do the reverse of the most common Logitech/Microsoft 
+        Bus mouse &gt; <font color="#FF0033">N</font><font color="#FFFF00">e</font><font color="#00CC00">X</font><font color="#CC0099">T</font> 
+        procedure described in numerous USENET postings and in the FAQ.</font></p>
+      </td>
+  </tr>
+</table>
+<hr width="80%">
+<table width="49%" bgcolor="#000000" align="center">
+  <tr bgcolor="#666666"> 
+    <td width="50"><font size="3">WIRE COLOR</font></td>
+    <td width="59"><font size="3">MINI DIN PIN</font></td>
+    <td width="87"><font size="3">LOGITECH SIGNAL</font></td>
+    <td width="190"><font size="3">MICROSOFT IN-PORT SIGNAL</font></td>
+    <td width="20" bgcolor="#000000" bordercolor="#000000" rowspan="11"><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font><font color="#E3E3E3"></font></td>
+    <td width="88"><font size="3" color="#CCCCCC"><font color="#FF0033">N</font><font color="#FFFF00">e</font><font color="#00CC00">X</font><font color="#CC0099">T</font></font><font size="3"> 
+      PINOUT</font></td>
+    <td width="85"> 
+      <div align="left"><font size="3" color="#CCCCCC"><font color="#FF0033">N</font><font color="#FFFF00">e</font><font color="#00CC00">X</font><font color="#CC0099">T</font></font><font size="3"> 
+        SIGNAL</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#000000">Black</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">1</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">+5V</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">+5V</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">1</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">+5V</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#330000">Brown</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">2</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">X2</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">XA</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">2</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">XA</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#FF0000">Red</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">3</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">X1</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">XB</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">3</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">XB</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#FF9966">Orange</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">4</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Y1</font></td>
+    <td width="190" bgcolor="#CCCCCC"> 
+      <p><font color="#000000" size="3">YA</font></p>
+    </td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">4</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">YA</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#CCCC00">Yellow</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">5</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Y2</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">YB</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">5</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">YB</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#009933">Green</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">6</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Left</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">SW1</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">6</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">Rt</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#9933CC">Violet</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">7</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Middle</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">SW2</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">7</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">Lt</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#999999">Gray</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">8</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Right</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">SW3</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">8</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font size="3" color="#000000">GND</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#000000">White</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">9</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">GND</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">Logic GND</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">NC</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font color="#000000" size="3">NC</font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" width="50"><font size="2"><kbd><b><font color="#000000">SHIELD</font></b></kbd></font></td>
+    <td width="59" bgcolor="#CCCCCC"><font color="#000000" size="3">Shell</font></td>
+    <td width="87" bgcolor="#CCCCCC"><font color="#000000" size="3">Chassis</font></td>
+    <td width="190" bgcolor="#CCCCCC"><font color="#000000" size="3">Chassis</font></td>
+    <td width="88" bgcolor="#CCCCCC"><font size="3" color="#000000">Chassis</font></td>
+    <td width="85" bgcolor="#CCCCCC"> 
+      <div align="left"><font color="#000000"></font></div>
+    </td>
+  </tr>
+</table>
+<hr width="80%">
+</html>

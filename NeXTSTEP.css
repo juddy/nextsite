@@ -32,19 +32,6 @@ body {
 }
 
 
-#oldpane {
-      position: absolute;
-      width: 0px;
-      height: 0px;
-      top: 0px;
-      left: 0px;
-      margin: 0;
-      padding: 0;
-     z-index: 100;
-      border: 4px #9a9a9a;
-      background: #fff;
-}
-
 #title {
     text-align: center;
     background-color: #000;
@@ -77,10 +64,10 @@ body {
 
 #text {
       font-family: Serif; 
-      background-color: white;
-      position: absolute;
-      padding: 10px;
-      margin: 2px;
+      background-color: #9a9a9a;
+      padding: 10px 10px 10px 10px;
+      margin: 20px;
+      left-margin: 20px;
       font-smooth: never;
       -webkit-font-smoothing : none;
 }
@@ -122,6 +109,21 @@ body {
       border-style: solid;
       border-color: #ffffff #555555 #555555 #ffffff;
 }
+
+.filewindowtitle{
+    border-style: outset;
+    text-align: center;
+    background-color: #000;
+      height: 16px;
+      border:1px;
+       font-size: 10pt;
+       font-family:'helvetica-bold';
+       padding-left: .5em;
+       padding-top: .3em;
+      color:#fff;
+      border-style: solid;
+      border-color: #ffffff #555555 #555555 #ffffff;
+}
 .top{top:0;}
 .left{left:0;}
 .right{margin:3; right:0; position:absolute;}
@@ -149,6 +151,7 @@ overflow: hidden;
 }
 
 
+
 #ghostpane {
       background: #000;
       opacity: 0;
@@ -157,14 +160,15 @@ overflow: hidden;
       position: absolute;
       margin: 0;
       padding: 0;
-     z-index: 98;
-
+      z-index: 98;
      -webkit-transition: all 0.25s ease-in-out;
      -moz-transition: all 0.25s ease-in-out;
      -ms-transition: all 0.25s ease-in-out;
      -o-transition: all 0.25s ease-in-out;
       transition: all 0.25s ease-in-out;
 }
+
+
 
 #stickie {
     font-family: helvetica;
@@ -209,4 +213,95 @@ position: relative; /* So z-index works later, but no surprises now */
 
 .dblclick:hover {
     z-index: 2;
+}
+
+.btn {
+  font-family:'helvetica-bold';
+  font-size: 12px;
+  margin-left: 5px;
+  padding: 3px;
+  background: #9a9a9a;
+  border-style: solid;
+  border-radius: 2px;
+  border-width: 2px;
+  display: inline-block;
+  border-color: #ffffff #555555 #555555 #ffffff;
+  text-decoration: none;
+  bottom: 4px;
+  line-height: 18px;
+  width: 55px;
+  text-align: center;
+}
+
+.fileWindow {
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+padding: 20px;
+background: none;
+z-index: 99999;
+opacity:0;
+pointer-events: none;
+text-align:left;
+}
+
+.fileWindow:target {
+opacity:1;
+pointer-events: auto;
+}
+
+.fileWindow > div {
+width: 500;
+height: 330;
+position: relative;
+margin: 10% auto;
+background: #9a9a9a;
+border-width: 4px;
+border-color: #9a9a9a;
+}
+
+.center{
+     margin: 0 auto;
+     width: 100px; 
+}
+
+.right {
+    right: 0px;
+}
+
+.inner {
+    position: relative;
+    border:1.5px;
+    border-radius: .2px;
+    border-style: solid;
+    border-color: #555555 #ffffff #ffffff #555555;
+    padding: 10px;
+    width: 90%;
+    display: block;
+    margin-left: 20px; 
+    margin-right: 60px; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+
+ display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.dl {
+    border-radius: 9.2px;
+    border: none;
+    background: #fff;
+    padding: 10px;
+    width: 66px;
+    height: 50px;
+    display: block;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    margin-bottom: 20px; 
+    margin-top: 10px; 
+    text-align: center;
+    vertical-align: middle;
 }

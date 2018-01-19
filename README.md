@@ -1,4 +1,4 @@
-#NeXT Site
+# NeXT Site
 Inspired by Eric Levenez' NeXT site
 
 Simple HTML/CSS site mimicing some key NeXT Workspace elements:
@@ -6,7 +6,7 @@ Simple HTML/CSS site mimicing some key NeXT Workspace elements:
 - Dock
 - Default menu
 
-#"Features"
+# "Features"
 
 - Splash page hides a link in the arrow of the MO disk at the uppermost position - configurable with imagemap
 
@@ -28,7 +28,7 @@ Simple HTML/CSS site mimicing some key NeXT Workspace elements:
 
 ----
 
-#Working with it
+# Working with it
 
 # Index
 The index.htm file presents the basic elements; Dock, Menu, App, Recycler.
